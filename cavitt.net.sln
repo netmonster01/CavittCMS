@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28010.2048
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "cavitt.net", "cavitt.net\cavitt.net.csproj", "{A12D1D79-CB8E-45B7-A655-7541B6188B7B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A12D1D79-CB8E-45B7-A655-7541B6188B7B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A12D1D79-CB8E-45B7-A655-7541B6188B7B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A12D1D79-CB8E-45B7-A655-7541B6188B7B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A12D1D79-CB8E-45B7-A655-7541B6188B7B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {10DAD735-95E0-44C6-9A83-E5B7D346B93A}
+	EndGlobalSection
+EndGlobal
