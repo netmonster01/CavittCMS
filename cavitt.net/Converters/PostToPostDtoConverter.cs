@@ -2,11 +2,9 @@
 using cavitt.net.Interfaces;
 using cavitt.net.Models;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 
-namespace cavitt.net.Converter
+namespace cavitt.net.Converters
 {
     public class PostToPostDtoConverter : IConverter<Post, PostDto>
     {

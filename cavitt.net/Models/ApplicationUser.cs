@@ -17,7 +17,6 @@ namespace cavitt.net.Models
         public virtual ICollection<IdentityUserLogin<string>> Logins { get; set; }
         public virtual ICollection<IdentityUserToken<string>> Tokens { get; set; }
         public virtual ICollection<ApplicationUserRole> UserRoles { get; set; }
-
         public string AvatarImage { get; set; }
         public string AvatarImageType { get; set; }
 

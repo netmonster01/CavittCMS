@@ -1,4 +1,4 @@
-﻿using cavitt.net.Converter;
+﻿using cavitt.net.Converters;
 using cavitt.net.Data;
 using cavitt.net.Dtos;
 using cavitt.net.Interface;
@@ -47,10 +47,11 @@ namespace cavitt.net
             services.AddScoped<IDashboardRepository, DashboardRepository>();
             services.AddScoped<IVoteRepository, VoteRepository>();
             services.AddScoped<IProjectRepository, ProjectRepository>();
+            services.AddScoped<IUsersRepository, UsersRepository>();
             // add converters
             services.AddScoped<IConverter<Post, PostDto>, PostToPostDtoConverter>();
             services.AddScoped<IConverter<ApplicationUser, UserDto>, ApplicationUserToUserDtoConverter>();
-
+            services.AddScoped<IConverter<UserDto, ApplicationUser>, UserDtoToApplicationUserConverter>();
             // set up database
             services.AddDbContext<ApplicationDbContext>(options =>
                             options.UseSqlite(Configuration.GetConnectionString("IdentityConnection")), ServiceLifetime.Transient);
@@ -65,9 +66,9 @@ namespace cavitt.net
             .AddDefaultTokenProviders();
 
             // configure jwt authentication
-            var appSettings = appSettingsSection.Get<AppSettings>();
-            var securityKey = Encoding.UTF8.GetBytes(appSettings.Secret);
-            var signingKey = new SymmetricSecurityKey(securityKey);
+            AppSettings appSettings = appSettingsSection.Get<AppSettings>();
+            byte[] securityKey = Encoding.UTF8.GetBytes(appSettings.Secret);
+            SymmetricSecurityKey signingKey = new SymmetricSecurityKey(securityKey);
 
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
             .AddJwtBearer(options =>
