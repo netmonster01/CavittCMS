@@ -1,0 +1,265 @@
+/* You can add global styles to this file, and also import other style files */
+@import "~bootstrap/dist/css/bootstrap.css";
+@import "~font-awesome/css/font-awesome.css";
+
+
+$font-stack: Roboto, Helvetica, sans-serif;
+$primary-color: #00BDF3;
+$primary-color-light: #B9EDFB;
+$primary-text: #FFFFFF;
+$primary-text-dark: #000000;
+$error-text: #bd2130;
+
+$log-error: #bd2130;
+$log-info: #369;
+$log-pass: #2fd132;
+$log-warn: #f36d33;
+$log-debug: #929090;
+
+$primary-background: #303030;
+$primary-light-background: #929090;
+$primary-border-color: #ffffff;
+
+html, body {
+  height: 100%;
+  background-color: $primary-background;
+}
+
+body {
+  color: $primary-text;
+  margin: 0;
+  font-family: $font-stack;
+  //background-image: linear-gradient(to right top, #051937, #004d7a, #008793, #00bf72, #a8eb12);
+}
+
+.panel {
+  background-color: $primary-light-background;
+}
+
+.even {
+  background-color: $primary-color;
+}
+
+.odd {
+  background-color: $primary-color-light;
+}
+.navbar {
+  background-color: $primary-light-background;
+  color: $primary-text;
+}
+.navbar a{
+  color: $primary-text;
+}
+a:hover{
+  color: deeppink;
+}
+
+
+.dashboard {
+  padding: 5px 10px;
+}
+
+.dashboardPosts {
+  border-radius: 25px;
+  border: 2px solid $primary-border-color;
+  padding: 20px;
+  height: 150px;
+  background-color: rgba($primary-light-background, .3);
+}
+
+// Code Blocks
+pre {
+  background:$primary-background;
+  border: 1px solid #ddd;
+  border-left: 3px solid #f36d33;
+  color: #666;
+  page-break-inside: avoid;
+  font-family: monospace;
+  font-size: 15px;
+  line-height: 1.6;
+  margin-bottom: 1.6em;
+  max-width: 100%;
+  overflow: auto;
+  padding: 1em 1.5em;
+  display: block;
+  word-wrap: break-word;
+}
+
+#bigPofileImg
+{
+  width: 128px;
+  height: 128px;
+}
+/*.mat-form-field-label{
+  color: $primary-text-dark !important;
+
+}
+.mat-form-field-underline
+{
+  color: $primary-text-dark !important;
+}*/
+
+label
+{
+  color: $primary-text;
+}
+h1 {
+  color: $primary-text;
+}
+
+.img-cir {
+  border-radius: 50%;
+}
+
+.tblHeader {
+    color: $primary-color;
+}
+
+.headerBar{
+ background-color: $primary-color;
+ padding:10px 10px 10px 0px;
+}
+
+.fa-dark{
+  color:$primary-text-dark;
+}
+
+nav .mat-button {
+  flex: 1;
+  border-radius: 0;
+  line-height: 1;
+  background: transparent;
+}
+
+nav .mat-button, nav .mat-button:visited {
+  color: #369;
+}
+
+nav .mat-button.active {
+  background: #369;
+}
+
+.mat-button md-icon, .mat-button .caption {
+  color: #369;
+}
+
+.mat-button.active md-icon, .mat-button.active .caption {
+  color: #FFF;
+}
+
+.mat-button .caption {
+  font-variant: small-caps;
+  font-weight: 400;
+}
+
+/* the below makes the difference */
+
+.mat-button-focus-overlay, .mat-button-ripple {
+  z-index: -1;
+}
+
+.mat-button-focus-overlay {
+  display: none;
+}
+
+#errorContainer {
+  color: $primary-color !important;
+}
+
+/*#errorContainer div.h1 {
+  //background-color: $primary-color !important;
+  color: $error-text;
+}*/
+
+/*#errorContainer div {
+  color: $primary-color !important;
+}*/
+
+.errorHead  {
+  //background-color: $primary-color !important;
+  font-size:2em;
+  color: $error-text !important;
+}
+
+.card{
+  color: $primary-text-dark;
+}
+
+textarea {
+  width: 400px !important;
+  height: 200px !important;
+}
+
+.logError{
+  background-color: $log-error;
+}
+
+.logInfo {
+  background-color: $log-info;
+}
+
+
+.logPass {
+  background-color: $log-pass;
+}
+
+.logWarn {
+  background-color: $log-warn;
+}
+
+.logDebug {
+  background-color: $log-debug;
+}
+
+.logPanel {
+  overflow-wrap: break-word;
+}
+input[type="text"] {
+  width: 100%;
+  border: 2px solid #aaa;
+  border-radius: 4px;
+  margin: 8px 0;
+  outline: none;
+  padding: 8px;
+  box-sizing: border-box;
+  transition: 0.3s;
+}
+
+input[type="text"]:focus {
+  border-color: dodgerBlue;
+  box-shadow: 0 0 8px 0 dodgerBlue;
+}
+
+.inputWithIcon input[type="text"] {
+  padding-left: 40px;
+}
+
+.inputWithIcon {
+  position: relative;
+}
+
+.inputWithIcon i {
+  position: absolute;
+  left: 0;
+  top: 8px;
+  padding: 9px 8px;
+  color: #aaa;
+  transition: 0.3s;
+}
+
+.inputWithIcon input[type="text"]:focus + i {
+  color: dodgerBlue;
+}
+
+.inputWithIcon.inputIconBg i {
+  background-color: #aaa;
+  color: #fff;
+  padding: 9px 4px;
+  border-radius: 4px 0 0 4px;
+}
+
+.inputWithIcon.inputIconBg input[type="text"]:focus + i {
+  color: #fff;
+  background-color: dodgerBlue;
+}
+

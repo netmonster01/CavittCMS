@@ -1,0 +1,58 @@
+<h2 mat-dialog-title>Add New User</h2>
+<mat-dialog-content [formGroup]="form">
+  <div class="row">
+    <div class="col-sm-12">
+      <!-- first name -->
+      <div class="form-group">
+        <mat-form-field>
+          <input matInput type="text" formControlName="firstName" class="form-control" id="profileFirstName" placeholder="First Name">
+        </mat-form-field>
+      </div>
+      <!-- last name -->
+      <div class="form-group">
+        <mat-form-field>
+          <input matInput type="text" formControlName="lastName" class="form-control" id="profileLastName" placeholder="Last Name">
+        </mat-form-field>
+      </div>
+      <!-- email -->
+      <div class="form-group">
+        <mat-form-field>
+          <input matInput type="email" formControlName="email" class="form-control" id="profileEmail" placeholder="Email">
+        </mat-form-field>
+      </div>
+      <div class="form-group">
+        <mat-form-field>
+          <mat-select class="form-control" formControlName="rolesList" id="profile" (change)="onSelect($event.target.value)" placeholder="Role">
+            <mat-option *ngFor="let role of roles" [value]="role.name">
+              {{role.name}}
+            </mat-option>
+           </mat-select>
+        </mat-form-field>
+      </div>
+      <!-- password -->
+      <div class="form-group">
+        <mat-form-field>
+          <input matInput type="password" formControlName="password" class="form-control" id="profilePassword" placeholder="Password">
+        </mat-form-field>
+      </div>
+      <!--  confirm password -->
+      <div class="form-group">
+        <mat-form-field>
+          <input matInput type="password" formControlName="confirmPassword" class="form-control" id="profileConfirmPassword" placeholder="Confirm Password">
+        </mat-form-field>
+      </div>
+    </div>
+  </div>
+  <!--<mat-form-field>
+    <input matInput
+           placeholder="Course Description"
+           formControlName="description">
+  </mat-form-field>
+  ....-->
+
+</mat-dialog-content>
+
+<mat-dialog-actions>
+  <button mat-button (click)="close()">Cancel</button>
+  <button class="mat-raised-button mat-primary" (click)="save()">Save</button>
+</mat-dialog-actions>

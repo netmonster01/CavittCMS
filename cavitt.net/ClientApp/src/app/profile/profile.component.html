@@ -1,0 +1,63 @@
+<form [formGroup]="profileForm" (ngSubmit)="submitHandler()">
+  <!--value: {{profileForm.value  | json}}
+  <br />
+  user: {{user  | json}}-->
+  <div class="container">
+    <div class="headerBar">
+
+      <div class="row">
+        <div class="col-12">
+          <h1>Profile</h1>
+        </div>
+      </div>
+
+    </div>
+    <div class="row">
+      &nbsp;
+    </div>
+    <div class="row">
+      <div class="col-sm-3">
+        <div class="row"><img [src]="imageSrc" id="bigPofileImg"> </div>
+        <div class="row">
+          &nbsp;
+        </div>
+        <div class="row">
+          <input type="file" (change)="onFileSelected($event)" #fileInput multiple />
+        </div>
+
+      </div>
+      <div class="col-sm-9">
+        <!-- first name -->
+        <div class="form-group">
+          <mat-form-field>
+            <input matInput type="text" formControlName="firstName" class="form-control" id="profileFirstName" placeholder="First Name" >
+          </mat-form-field>
+        </div>
+        <!-- last name -->
+        <div class="form-group">
+          <mat-form-field>
+            <input matInput type="text" formControlName="lastName" class="form-control" id="profileLastName" placeholder="Last Name" >
+          </mat-form-field>
+        </div>
+        <!-- email -->
+        <div class="form-group">
+          <mat-form-field>
+            <input matInput type="email" formControlName="email" class="form-control" id="profileEmail" placeholder="Email" >
+          </mat-form-field>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="form-group">
+        <button type="submit" class="btn btn-primary" [disabled]="profileForm.invalid">Submit</button>
+      </div>
+    </div>
+
+    <!-- image -->
+    <!-- <div class="form-group">
+    <mat-form-field>
+      <input matInput type="file" formControlName="file" class="form-control" id="profileFile" placeholder="Email" [(ngModel)]="user.email">
+    </mat-form-field>
+  </div> -->
+  </div>
+</form>

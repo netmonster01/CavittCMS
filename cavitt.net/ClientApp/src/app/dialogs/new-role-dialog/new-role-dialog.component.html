@@ -1,0 +1,18 @@
+<h2 mat-dialog-title>Add New Role</h2>
+<mat-dialog-content [formGroup]="form">
+  <div class="row">
+    <div class="col-sm-12">
+      <!-- roles  -->
+      <div class="form-group">
+        <mat-form-field>
+          <input matInput type="text" formControlName="newRole" class="form-control" id="addNewRole" placeholder="RoleName">
+        </mat-form-field>
+      </div>
+  </div>
+</div>
+</mat-dialog-content>
+
+<mat-dialog-actions>
+  <button mat-button (click)="close()">Cancel</button>
+  <button class="mat-raised-button mat-primary" (click)="save()">Save</button>
+</mat-dialog-actions>

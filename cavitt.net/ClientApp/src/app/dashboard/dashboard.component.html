@@ -1,0 +1,76 @@
+<div class="row justify-content-center align-items-center">
+  <div class="col-sm-3">
+    <div class="dashboard dashboardPosts">
+      <div class="row">
+        <div class="col-sm-12"><h3>Logs</h3></div>
+      </div>
+      <div class="row">
+        <div class="col-sm-6 ">
+          <i class="fa fa-exclamation-triangle fa-2x" aria-hidden="true"></i>
+        </div>
+        <div class="col-sm-6">
+          <div>
+            {{dashboard.errors}}
+          </div>
+        </div>
+      </div>
+      </div>
+    </div>
+    <div class="col-sm-3">
+      <div class="dashboard dashboardPosts">
+        <div class="row">
+          <div class="col-sm-12"><h3>Users</h3></div>
+        </div>
+        <div class="row">
+          <div class="col-sm-6 ">
+            <i class="fa fa fa-users fa-2x" aria-hidden="true"></i>
+          </div>
+          <div class="col-sm-6">
+            <div>
+              {{dashboard.users}}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-3">
+      <div class="dashboard dashboardPosts">
+        <div class="row">
+          <div class="col-sm-12"><h3>Comments</h3></div>
+        </div>
+        <div class="row">
+          <div class="col-sm-6 ">
+            <i class="fa fa-comments fa-2x" aria-hidden="true"></i>
+          </div>
+          <div class="col-sm-6">
+            <div>
+              {{dashboard.comments}}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-3">
+      <div class="dashboard dashboardPosts">
+        <div class="row">
+          <div class="col-sm-12"><h3>Posts</h3></div>
+        </div>
+        <div class="row">
+          <div class="col-sm-6 ">
+            <i class="fa fa-sticky-note fa-2x" aria-hidden="true"></i>
+          </div>
+          <div class="col-sm-6">
+            <div>
+              {{dashboard.posts}}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+<div class="row">&nbsp;</div>
+<div class="row">
+  <div class="col-sm-12">
+    <app-blog-widget></app-blog-widget>
+  </div>
+</div>

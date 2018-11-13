@@ -1,0 +1,37 @@
+<h2>Roles</h2>
+<div class="container" style="background-color:#ffffff">
+  <div class="row">
+    <div class="col-xs-12 col-sm-12">
+      <div class="row">
+        <!--<div class="col-xs-4 col-sm-4">
+    <span class="tblHeader">RoleId:</span>
+  </div>-->
+        <div class="col-xs-4 col-sm-7">
+          <span class="tblHeader">Name:</span>
+        </div>
+        <div class="col-xs-4 col-sm-5">
+          <button class="btn btn-outline-success fa fa-plus" title="Add New Role" (click)="openDialog()"></button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row p-3" *ngFor="let role of Roles;  let odd=odd; let even=even" [ngClass]="{ odd: odd, even: even}">
+    <div class="col-xs-12 col-sm-12">
+      <div class="row">
+        <!--<div class="col-xs-4 col-sm-4">
+          {{role.id}}
+        </div>-->
+        <div class="col-xs-4 col-sm-7">
+          {{role.name}}
+        </div>
+        <div class="col-xs-4 col-sm-5">
+          <button class="btn btn-outline-secondary fa fa-pencil"></button>
+          &nbsp;
+          <button class="btn btn-outline-danger fa fa-trash"></button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <div class="row">&nbsp;</div>
+</div>

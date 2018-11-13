@@ -1,0 +1,13 @@
+<div class="container" id="errorContainer">
+  <div class="errorHead">
+    Error:
+  </div>
+  
+  <div class="row">
+    <strong>Message: </strong> {{error.message}}
+    <strong>Stack: </strong> {{error.stack}}
+  </div>
+</div>
+<div class="row">
+  <button mat-button (click)="close()">Ok</button>
+</div>

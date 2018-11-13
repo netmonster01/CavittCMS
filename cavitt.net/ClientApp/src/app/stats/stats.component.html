@@ -1,0 +1,10 @@
+<div *ngIf="stats.length > 0">
+  <ul>
+    <li *ngFor="let item of stats; let i = index">
+      <div>
+        {{item.upload}} | {{item.download}} | {{item.ping}}
+      </div>
+    </li>
+  </ul>
+</div>
+

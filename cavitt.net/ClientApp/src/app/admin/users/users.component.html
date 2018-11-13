@@ -1,0 +1,47 @@
+<h2>Users</h2>
+<div class="container" style="background-color:#ffffff">
+  <div class="row">
+    <div class="col-xs-12 col-sm-12">
+      <div class="row">
+        <div class="col-sm-2">
+          <span class="tblHeader">Photo</span>
+        </div>
+        <div class="col-xs-4 col-sm-3">
+          <span class="tblHeader">UserName:</span>
+        </div>
+        <div class="col-xs-4 col-sm-2">
+          <span class="tblHeader">Role:</span>
+        </div>
+        <div class="col-xs-4 col-sm-5">
+          <button class="btn btn-outline-success fa fa-plus" title="Add New User" (click)="openDialog()"></button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row p-3" *ngFor="let user of Users;  let odd=odd; let even=even" [ngClass]="{ odd: odd, even: even}">
+    <div class="col-xs-12 col-sm-12">
+      <div class="row">
+        <div class="col-sm-2">
+          <img class="img-cir" [src]="user.avatarBase64 " alt="Avatar" style="width:25px">
+        </div>
+        <!--<div class="col-xs-4 col-sm-4">
+          {{user.id}}
+        </div>-->
+        <div class="col-xs-4 col-sm-3">
+          {{user.email}}
+        </div>
+        <div class="col-xs-4 col-sm-2">
+          <span title="Admin" [ngClass]="{'fa fa-user-secret ': user.isAdmin == true}"></span><span title="No Roles" [ngClass]="{'fa fa-user-o': user.roles.length == 0}"></span>
+        </div>
+        <div class="col-xs-4 col-sm-3">
+          <button class="btn btn-outline-secondary fa fa-pencil"></button>
+          &nbsp;
+          <button class="btn btn-outline-danger fa fa-trash"></button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <div class="row">&nbsp;</div>
+</div>
+
