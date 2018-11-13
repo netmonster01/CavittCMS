@@ -6,11 +6,11 @@ using System.Linq;
 
 namespace cavitt.net.Converters
 {
-    public class CommentToCommentDtoConverter : IConverter<Comment, CommentDto>
+    public class CommentConverter : IConverter<Comment, CommentDto>
     {
         private readonly ILoggerRepository _loggerRepository;
 
-        public CommentToCommentDtoConverter(ILoggerRepository loggerRepository)
+        public CommentConverter(ILoggerRepository loggerRepository)
         {
             _loggerRepository = loggerRepository;
         }
@@ -42,6 +42,11 @@ namespace cavitt.net.Converters
                 _loggerRepository.Write(ex);
                 return null;
             }
+        }
+
+        public Comment Convert(CommentDto source_object)
+        {
+            throw new NotImplementedException();
         }
     }
 }

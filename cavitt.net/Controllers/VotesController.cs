@@ -59,7 +59,7 @@ namespace cavitt.net.Controllers
 
         // PUT: api/Votes/5
         [HttpPut]
-        public async Task<IActionResult> PutVote([FromBody] VoteDto vote)
+        public IActionResult PutVote([FromBody] VoteDto vote)
         {
             if (!ModelState.IsValid)
             {
@@ -94,7 +94,7 @@ namespace cavitt.net.Controllers
 
         // POST: api/Votes
         [HttpPost]
-        public async Task<IActionResult> PostVote([FromBody] VoteDto vote)
+        public IActionResult PostVote([FromBody] VoteDto vote)
         {
             if (!ModelState.IsValid)
             {

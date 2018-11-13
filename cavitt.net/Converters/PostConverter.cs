@@ -8,12 +8,12 @@ using System.Threading.Tasks;
 
 namespace cavitt.net.Converters
 {
-    public class PostToPostDtoConverter : IConverter<Post, PostDto>
+    public class PostConverter : IConverter<Post, PostDto>
     {
         private readonly ILoggerRepository _loggerRepository;
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly IConverter<Comment, CommentDto> _converter;
-        public PostToPostDtoConverter(ILoggerRepository loggerRepository, UserManager<ApplicationUser> userManager, IConverter<Comment, CommentDto> converter)
+        public PostConverter(ILoggerRepository loggerRepository, UserManager<ApplicationUser> userManager, IConverter<Comment, CommentDto> converter)
         {
             _loggerRepository = loggerRepository;
             _userManager = userManager;
@@ -50,6 +50,11 @@ namespace cavitt.net.Converters
                 _loggerRepository.Write(ex);
                 return null;
             }
+        }
+
+        public Post Convert(PostDto source_object)
+        {
+            throw new NotImplementedException();
         }
     }
 }
