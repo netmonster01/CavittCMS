@@ -55,8 +55,8 @@ namespace cavitt.net
             services.AddScoped<IConverter<Post, PostDto>, PostConverter>();
             services.AddScoped<IConverter<ApplicationUser, UserDto>, UserConverter>();
             services.AddScoped<IConverter<Comment, CommentDto>, CommentConverter>();
-            services.AddScoped<IConverter<Project, ProjectDto>>();
-            services.AddScoped<IConverter<ProjectCategory, ProjectCategoryDto>>();
+            services.AddScoped<IConverter<Project, ProjectDto>, ProjectConverter>();
+            services.AddScoped<IConverter<ProjectCategory, ProjectCategoryDto>, ProjectCategoryConverter>();
 
             // set up database
             services.AddDbContext<ApplicationDbContext>(options =>
