@@ -13,7 +13,7 @@ namespace cavitt.net.Interfaces
         PostDto GetLatestPost();
         List<PostDto> GetPosts();
         Task<bool> CreatePostAsync(PostDto post);
-        Task<bool> CreateCommentAsync(Comment comment);
+        Task<bool> CreateCommentAsync(CommentDto comment);
         //Task<bool> CreateBlog(Blog blog);
 
         //Task<bool> CreateBlogImageAsync(BlogImage blogImage);

@@ -9,7 +9,7 @@ using cavitt.net.Data;
 namespace cavitt.net.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20181112192054_initial")]
+    [Migration("20181113042451_initial")]
     partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -137,7 +137,7 @@ namespace cavitt.net.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Comment");
+                    b.ToTable("Comments");
                 });
 
             modelBuilder.Entity("cavitt.net.Models.Log", b =>
@@ -246,7 +246,7 @@ namespace cavitt.net.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Vote");
+                    b.ToTable("Votes");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

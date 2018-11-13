@@ -17,7 +17,7 @@ namespace cavitt.net.Dtos
         public DateTime DateModified { get; set; }
         public int Likes { get; set; }
         public int DisLikes { get; set; }
-        public List<Comment> Comments { get; set; }
+        public List<CommentDto> Comments { get; set; }
         public List<Vote> Votes { get; set; }
     }
 }

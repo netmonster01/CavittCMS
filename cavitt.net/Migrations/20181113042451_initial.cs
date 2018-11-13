@@ -234,7 +234,7 @@ namespace cavitt.net.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Comment",
+                name: "Comments",
                 columns: table => new
                 {
                     CommentId = table.Column<int>(nullable: false)
@@ -249,7 +249,7 @@ namespace cavitt.net.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Comment", x => x.CommentId);
+                    table.PrimaryKey("PK_Comments", x => x.CommentId);
                     table.ForeignKey(
                         name: "ForeignKey_Comments_Post",
                         column: x => x.PostId,
@@ -257,7 +257,7 @@ namespace cavitt.net.Migrations
                         principalColumn: "PostId",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Comment_AspNetUsers_UserId",
+                        name: "FK_Comments_AspNetUsers_UserId",
                         column: x => x.UserId,
                         principalTable: "AspNetUsers",
                         principalColumn: "Id",
@@ -265,7 +265,7 @@ namespace cavitt.net.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Vote",
+                name: "Votes",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
@@ -276,7 +276,7 @@ namespace cavitt.net.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Vote", x => x.Id);
+                    table.PrimaryKey("PK_Votes", x => x.Id);
                     table.ForeignKey(
                         name: "ForeignKey_Votes_Post",
                         column: x => x.PostId,
@@ -284,7 +284,7 @@ namespace cavitt.net.Migrations
                         principalColumn: "PostId",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Vote_AspNetUsers_UserId",
+                        name: "FK_Votes_AspNetUsers_UserId",
                         column: x => x.UserId,
                         principalTable: "AspNetUsers",
                         principalColumn: "Id",
@@ -329,13 +329,13 @@ namespace cavitt.net.Migrations
                 unique: true);
 
             migrationBuilder.CreateIndex(
-                name: "IX_Comment_PostId",
-                table: "Comment",
+                name: "IX_Comments_PostId",
+                table: "Comments",
                 column: "PostId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Comment_UserId",
-                table: "Comment",
+                name: "IX_Comments_UserId",
+                table: "Comments",
                 column: "UserId");
 
             migrationBuilder.CreateIndex(
@@ -344,13 +344,13 @@ namespace cavitt.net.Migrations
                 column: "AuthorId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Vote_PostId",
-                table: "Vote",
+                name: "IX_Votes_PostId",
+                table: "Votes",
                 column: "PostId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Vote_UserId",
-                table: "Vote",
+                name: "IX_Votes_UserId",
+                table: "Votes",
                 column: "UserId");
         }
 
@@ -372,7 +372,7 @@ namespace cavitt.net.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
-                name: "Comment");
+                name: "Comments");
 
             migrationBuilder.DropTable(
                 name: "Logs");
@@ -384,7 +384,7 @@ namespace cavitt.net.Migrations
                 name: "Settings");
 
             migrationBuilder.DropTable(
-                name: "Vote");
+                name: "Votes");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");

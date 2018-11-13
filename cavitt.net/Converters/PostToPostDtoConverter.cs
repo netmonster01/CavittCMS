@@ -1,29 +1,38 @@
 ﻿using cavitt.net.Dtos;
 using cavitt.net.Interfaces;
 using cavitt.net.Models;
+using Microsoft.AspNetCore.Identity;
 using System;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace cavitt.net.Converters
 {
     public class PostToPostDtoConverter : IConverter<Post, PostDto>
     {
         private readonly ILoggerRepository _loggerRepository;
-        public PostToPostDtoConverter(ILoggerRepository loggerRepository)
+        private readonly UserManager<ApplicationUser> _userManager;
+        private readonly IConverter<Comment, CommentDto> _converter;
+        public PostToPostDtoConverter(ILoggerRepository loggerRepository, UserManager<ApplicationUser> userManager, IConverter<Comment, CommentDto> converter)
         {
             _loggerRepository = loggerRepository;
+            _userManager = userManager;
+            _converter = converter;
         }
+
         public PostDto Convert(Post sourcePost)
         {
-           
+
             if (sourcePost == null)
             { return null; }
 
             try
             {
-                PostDto post = new PostDto {
-                    Author = sourcePost.Author.UserName,
-                    Comments = sourcePost.Comments.ToList(),
+                var user = _userManager.FindByIdAsync(sourcePost.UserId).Result;
+                PostDto post = new PostDto
+                {
+                    Author = string.Format("{0} {1}", user.FirstName, user.LastName),
+                    Comments = sourcePost.Comments.Select(c=> _converter.Convert(c)).ToList(),
                     Content = sourcePost.Content,
                     DateCreated = sourcePost.DateCreated,
                     DateModified = sourcePost.DateModified,

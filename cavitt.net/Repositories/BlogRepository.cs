@@ -24,7 +24,7 @@ namespace cavitt.net.Repositories
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly IHttpContextAccessor _accessor;
         private readonly IConverter<Post, PostDto> _converter;
-
+        private readonly IConverter<Comment, CommentDto> _commentConverter;
         public BlogRepository(IServiceProvider serviceProvider, IHttpContextAccessor accessor)
         {
             _serviceProvider = serviceProvider;
@@ -33,16 +33,21 @@ namespace cavitt.net.Repositories
             _userManager = _serviceProvider.GetRequiredService<UserManager<ApplicationUser>>();
             _converter = _serviceProvider.GetRequiredService<IConverter<Post, PostDto>>();
             _accessor = accessor;
+            _commentConverter = _serviceProvider.GetRequiredService<IConverter<Comment, CommentDto>>();
         }
 
 
-        public async Task<bool> CreateCommentAsync(Comment comment)
+        public async Task<bool> CreateCommentAsync(CommentDto comment)
         {
             bool didCreate = false;
             try
             {
-                comment.User.UserName = await GetCurrentUser();
-                _applicationDbContext.Comments.Add(comment);
+                //Comment c = new Comment()
+                //{
+                //    UserId = 
+                //}
+                //comment.User.UserName = await GetCurrentUser();
+               // _applicationDbContext.Comments.Add(_commentConverter.Convert(comment));
                 await _applicationDbContext.SaveChangesAsync();
                 didCreate = true;
             }
@@ -129,7 +134,8 @@ namespace cavitt.net.Repositories
             PostDto post = new PostDto();
             try
             {
-                post = _converter.Convert(_applicationDbContext.Posts.Include(c => c.Comments).LastOrDefault());
+                var p = _applicationDbContext.Posts.Include(c => c.Comments).Include(u => u.Author).LastOrDefault();
+                post = _converter.Convert(p);
             }
             catch (Exception ex)
             {

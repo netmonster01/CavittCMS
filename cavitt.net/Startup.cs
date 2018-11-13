@@ -48,10 +48,15 @@ namespace cavitt.net
             services.AddScoped<IVoteRepository, VoteRepository>();
             services.AddScoped<IProjectRepository, ProjectRepository>();
             services.AddScoped<IUsersRepository, UsersRepository>();
+
+
+
             // add converters
             services.AddScoped<IConverter<Post, PostDto>, PostToPostDtoConverter>();
             services.AddScoped<IConverter<ApplicationUser, UserDto>, ApplicationUserToUserDtoConverter>();
             services.AddScoped<IConverter<UserDto, ApplicationUser>, UserDtoToApplicationUserConverter>();
+            services.AddScoped<IConverter<Comment, CommentDto>, CommentToCommentDtoConverter>();
+
             // set up database
             services.AddDbContext<ApplicationDbContext>(options =>
                             options.UseSqlite(Configuration.GetConnectionString("IdentityConnection")), ServiceLifetime.Transient);

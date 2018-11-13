@@ -135,7 +135,7 @@ namespace cavitt.net.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Comment");
+                    b.ToTable("Comments");
                 });
 
             modelBuilder.Entity("cavitt.net.Models.Log", b =>
@@ -244,7 +244,7 @@ namespace cavitt.net.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Vote");
+                    b.ToTable("Votes");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
