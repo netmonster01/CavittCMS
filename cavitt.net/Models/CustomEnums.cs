@@ -32,5 +32,12 @@ namespace cavitt.net
             Publisher,
             Family
         }
+
+
+        public enum ProjectType
+        {
+            Personal,
+            Professional
+        }
     }
 }

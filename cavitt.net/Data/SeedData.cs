@@ -7,7 +7,6 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Net;
-using System.Text;
 using System.Threading.Tasks;
 using static cavitt.net.CustomEnums;
 using cavitt.net.Interfaces;
@@ -59,35 +58,70 @@ namespace cavitt.net.Data
 
             // setup comments on the defualt post.
             await SeedCommentsAsync();
+
+            await SeedProjectCategoryAsync();
+
+            //await SeedProjectsAsync();
         }
 
-        //public static async Task SeedBlogAsync()
-        //{
+        private static void SeedProjects()
+        {
+            // create  2 projects one personal one prof.
+            // check if there are categories first
+            if (_context.ProjectCategories.Any())
+            {
+                if (!_context.Projects.Any())
+                {
 
-        //    try
-        //    {
-        //        Blog blog = _context.Blogs.Where(b => b.BlogId == 1).FirstOrDefault();
+                    Project personal = new Project
+                    {
+                        CategoryId = 1,
+                        Active = true,
+                        Content = "This is a personal Project with a bunch of really interesting stuff.",
+                        Title = "First Personal Project",
 
-        //        if (blog == null)
-        //        {
-        //            blog = new Blog
-        //            {
-        //                BlogId = 1,
-        //                Title = "Main Blog",
-        //                Url = "/blogs",
-        //                UserId = _userManager.FindByNameAsync(adminEmail).Result.Id,
-        //            };
-        //            _context.Blogs.Add(blog);
-        //            await _context.SaveChangesAsync();
-        //            _logRepository.Write(LogType.Info, "Seeded Blog.");
+                    };
 
-        //        }
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        _logRepository.Write(ex);
-        //    }
-        //}
+                    Project professional = new Project
+                    {
+
+                    };
+
+                }
+            }
+
+        }
+
+
+        /// <summary>
+        /// Seed project categories.
+        /// </summary>
+        /// <returns></returns>
+        private static async Task SeedProjectCategoryAsync()
+        {
+            try
+            {
+                if (!_context.ProjectCategories.Any())
+                {
+                    //
+                    string[] projectTypes = Enum.GetNames(typeof(ProjectType));
+
+                    foreach (var categoryName in projectTypes)
+                    {
+                        _context.ProjectCategories.Add(new ProjectCategory {
+                            CategoryName = categoryName,
+                            CategoryDescription = ""
+                        });
+                        await _context.SaveChangesAsync();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                _logRepository.Write(ex);
+                //throw;
+            }
+        }
 
         public static async Task SeedPostAsync()
         {
@@ -108,12 +142,11 @@ namespace cavitt.net.Data
                     };
                     _context.Posts.Add(post);
                     await _context.SaveChangesAsync();
-                    //_logRepository.Write(LogType.Info, "Seeded Post.");
                 }
             }
             catch (Exception ex)
             {
-                throw;
+                _logRepository.Write(ex);
             }
 
         }
@@ -150,7 +183,7 @@ namespace cavitt.net.Data
             }
             catch (Exception ex)
             {
-                throw;
+                _logRepository.Write(ex);
             }
 
         }
@@ -217,15 +250,6 @@ namespace cavitt.net.Data
                     roleResult = await _roleManager.CreateAsync(new ApplicationRole { Name = roleName });
                 }
             }
-        }
-
-        /// <summary>
-        /// Seed Projects
-        /// </summary>
-        /// <returns></returns>
-        public static void SeedProjects()
-        {
-
         }
 
 

@@ -22,6 +22,7 @@ namespace cavitt.net.Data
         public DbSet<Log> Logs { get; set; }
         public DbSet<Setting> Settings { get; set; }
         public DbSet<Project> Projects { get; set; }
+        public DbSet<ProjectCategory> ProjectCategories { get; set; }
 
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
         : base(options)
@@ -30,6 +31,12 @@ namespace cavitt.net.Data
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
+
+            // project to category  relationship
+            builder.Entity<Project>()
+            .HasOne(p => p.ProjectCategory)
+            .WithMany(b => b.Projects)
+            .HasForeignKey(p => p.CategoryId).HasConstraintName("ForeignKey_Project_ProjectCategory");
 
             // create comment to post relationship.
             builder.Entity<Comment>()
@@ -58,6 +65,11 @@ namespace cavitt.net.Data
             builder
                 .Entity<Project>()
                 .Property(e => e.ThumbnailImage)
+                .HasConversion(imageConverter);
+
+            builder
+                .Entity<ProjectCategory>()
+                .Property(e => e.Thumbnail)
                 .HasConversion(imageConverter);
 
             // enum to string.

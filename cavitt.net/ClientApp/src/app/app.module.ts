@@ -42,7 +42,6 @@ import { CommonComponent } from './dialogs/common/common.component';
 import { ProjectsComponent } from './projects/projects.component';
 import { ProjectComponent } from './projects/project/project.component';
 import { LogsComponent } from './admin/logs/logs.component';
-import { LogComponent } from './admin/logs/log/log.component';
 
 @NgModule({
   declarations: [
@@ -80,7 +79,6 @@ import { LogComponent } from './admin/logs/log/log.component';
     ProjectsComponent,
     ProjectComponent,
     LogsComponent,
-    LogComponent,
     FilterPipe,
   ],
   imports: [

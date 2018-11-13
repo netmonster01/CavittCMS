@@ -69,22 +69,16 @@ namespace cavitt.net.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Projects",
+                name: "ProjectCategory",
                 columns: table => new
                 {
-                    ProjectId = table.Column<int>(nullable: false)
+                    CategoryId = table.Column<int>(nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
-                    Title = table.Column<string>(nullable: true),
-                    Content = table.Column<string>(nullable: true),
-                    ThumbnailImage = table.Column<byte[]>(nullable: true),
-                    ThumbnailImageType = table.Column<string>(nullable: true),
-                    GitHubUrl = table.Column<string>(nullable: true),
-                    Keywords = table.Column<string>(nullable: true),
-                    Active = table.Column<bool>(nullable: false)
+                    CategoryName = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Projects", x => x.ProjectId);
+                    table.PrimaryKey("PK_ProjectCategory", x => x.CategoryId);
                 });
 
             migrationBuilder.CreateTable(
@@ -234,6 +228,32 @@ namespace cavitt.net.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Projects",
+                columns: table => new
+                {
+                    ProjectId = table.Column<int>(nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    Title = table.Column<string>(nullable: true),
+                    Content = table.Column<string>(nullable: true),
+                    ThumbnailImage = table.Column<byte[]>(nullable: true),
+                    ThumbnailImageType = table.Column<string>(nullable: true),
+                    GitHubUrl = table.Column<string>(nullable: true),
+                    Keywords = table.Column<string>(nullable: true),
+                    Active = table.Column<bool>(nullable: false),
+                    CategoryId = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Projects", x => x.ProjectId);
+                    table.ForeignKey(
+                        name: "ForeignKey_Project_ProjectCategory",
+                        column: x => x.CategoryId,
+                        principalTable: "ProjectCategory",
+                        principalColumn: "CategoryId",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Comments",
                 columns: table => new
                 {
@@ -344,6 +364,11 @@ namespace cavitt.net.Migrations
                 column: "AuthorId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Projects_CategoryId",
+                table: "Projects",
+                column: "CategoryId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Votes_PostId",
                 table: "Votes",
                 column: "PostId");
@@ -388,6 +413,9 @@ namespace cavitt.net.Migrations
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");
+
+            migrationBuilder.DropTable(
+                name: "ProjectCategory");
 
             migrationBuilder.DropTable(
                 name: "Posts");

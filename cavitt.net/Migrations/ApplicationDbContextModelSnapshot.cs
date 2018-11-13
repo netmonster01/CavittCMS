@@ -196,6 +196,8 @@ namespace cavitt.net.Migrations
 
                     b.Property<bool>("Active");
 
+                    b.Property<int>("CategoryId");
+
                     b.Property<string>("Content");
 
                     b.Property<string>("GitHubUrl");
@@ -210,7 +212,21 @@ namespace cavitt.net.Migrations
 
                     b.HasKey("ProjectId");
 
+                    b.HasIndex("CategoryId");
+
                     b.ToTable("Projects");
+                });
+
+            modelBuilder.Entity("cavitt.net.Models.ProjectCategory", b =>
+                {
+                    b.Property<int>("CategoryId")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("CategoryName");
+
+                    b.HasKey("CategoryId");
+
+                    b.ToTable("ProjectCategory");
                 });
 
             modelBuilder.Entity("cavitt.net.Models.Setting", b =>
@@ -349,6 +365,15 @@ namespace cavitt.net.Migrations
                     b.HasOne("cavitt.net.Models.ApplicationUser", "Author")
                         .WithMany()
                         .HasForeignKey("AuthorId");
+                });
+
+            modelBuilder.Entity("cavitt.net.Models.Project", b =>
+                {
+                    b.HasOne("cavitt.net.Models.ProjectCategory", "ProjectCategory")
+                        .WithMany("Projects")
+                        .HasForeignKey("CategoryId")
+                        .HasConstraintName("ForeignKey_Project_ProjectCategory")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("cavitt.net.Models.Vote", b =>

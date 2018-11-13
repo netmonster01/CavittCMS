@@ -18,5 +18,8 @@ namespace cavitt.net.Models
         public string GitHubUrl { get; set; }
         public string Keywords { get; set; }
         public bool Active { get; set; }
+
+        public int CategoryId { get; set; }
+        public ProjectCategory ProjectCategory { get; set; }
     }
 }

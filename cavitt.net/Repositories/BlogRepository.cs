@@ -150,9 +150,11 @@ namespace cavitt.net.Repositories
             List<PostDto> posts = new List<PostDto>();
             try
             {
-                posts = _applicationDbContext.Posts.Select(
-                    p=> _converter.Convert(p)
-                    ).OrderBy(o => o.DateCreated).ToList();
+                posts =  _applicationDbContext.Posts.Include(c => c.Comments).Include(u => u.Author).Select(p => _converter.Convert(p)).OrderBy(o => o.DateCreated).ToList();
+
+                //posts = _applicationDbContext.Posts.Select(
+                //    p=> _converter.Convert(p)
+                //    ).OrderBy(o => o.DateCreated).ToList();
                 //posts = (from p in _applicationDbContext.Posts
                 //         join u in _applicationDbContext.Users on p.UserId equals u.Id
                 //         //join c in _applicationDbContext.Comments on p.PostId equals c.PostId

@@ -41,7 +41,7 @@ export class BlogService {
 
   getPosts() {
 
-    return this._http.get<Post[]>('/api/Blogs/Posts')
+    return this._http.get<Post[]>('/api/Posts')
       .catch(this.handleError);
   }
 
