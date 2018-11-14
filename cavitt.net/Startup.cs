@@ -34,7 +34,7 @@ namespace cavitt.net
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-
+            // get the AppSettings section from the application.json file.
             var appSettingsSection = Configuration.GetSection("AppSettings");
 
             // configure DI for application services
@@ -49,14 +49,13 @@ namespace cavitt.net
             services.AddScoped<IProjectRepository, ProjectRepository>();
             services.AddScoped<IUsersRepository, UsersRepository>();
 
-
-
             // add converters
             services.AddScoped<IConverter<Post, PostDto>, PostConverter>();
             services.AddScoped<IConverter<ApplicationUser, UserDto>, UserConverter>();
             services.AddScoped<IConverter<Comment, CommentDto>, CommentConverter>();
             services.AddScoped<IConverter<Project, ProjectDto>, ProjectConverter>();
             services.AddScoped<IConverter<ProjectCategory, ProjectCategoryDto>, ProjectCategoryConverter>();
+            services.AddScoped<IConverter<Vote, VoteDto>, VoteConverter>();
 
             // set up database
             services.AddDbContext<ApplicationDbContext>(options =>

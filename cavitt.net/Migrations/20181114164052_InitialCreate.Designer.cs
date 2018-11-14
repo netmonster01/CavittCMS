@@ -9,8 +9,8 @@ using cavitt.net.Data;
 namespace cavitt.net.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20181113182206_initial")]
-    partial class initial
+    [Migration("20181114164052_InitialCreate")]
+    partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -224,11 +224,31 @@ namespace cavitt.net.Migrations
                     b.Property<int>("CategoryId")
                         .ValueGeneratedOnAdd();
 
+                    b.Property<string>("CategoryDescription");
+
                     b.Property<string>("CategoryName");
+
+                    b.Property<byte[]>("Thumbnail");
 
                     b.HasKey("CategoryId");
 
-                    b.ToTable("ProjectCategory");
+                    b.ToTable("ProjectCategories");
+                });
+
+            modelBuilder.Entity("cavitt.net.Models.ProjectImage", b =>
+                {
+                    b.Property<int>("ImageId")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<byte[]>("Base64Image");
+
+                    b.Property<int>("ProjectId");
+
+                    b.HasKey("ImageId");
+
+                    b.HasIndex("ProjectId");
+
+                    b.ToTable("ProjectImages");
                 });
 
             modelBuilder.Entity("cavitt.net.Models.Setting", b =>
@@ -375,6 +395,15 @@ namespace cavitt.net.Migrations
                         .WithMany("Projects")
                         .HasForeignKey("CategoryId")
                         .HasConstraintName("ForeignKey_Project_ProjectCategory")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("cavitt.net.Models.ProjectImage", b =>
+                {
+                    b.HasOne("cavitt.net.Models.Project", "Project")
+                        .WithMany("Images")
+                        .HasForeignKey("ProjectId")
+                        .HasConstraintName("ForeignKey_ProjectImage_Project")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 

@@ -8,4 +8,6 @@ export class Project {
   public keywords: string;
   public active: boolean;
   public fullThumbnailImageSrc: string;
+  public images: string[];
+  public categoryId: number;
 }

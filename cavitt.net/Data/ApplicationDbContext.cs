@@ -24,6 +24,8 @@ namespace cavitt.net.Data
         public DbSet<Project> Projects { get; set; }
         public DbSet<ProjectCategory> ProjectCategories { get; set; }
 
+        public DbSet<ProjectImage> ProjectImages { get; set; }
+
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
         : base(options)
         {
@@ -52,6 +54,14 @@ namespace cavitt.net.Data
                 .HasForeignKey(c => c.PostId)
                 .HasConstraintName("ForeignKey_Votes_Post");
 
+
+            builder.Entity<ProjectImage>()
+                .HasOne(c => c.Project)
+                .WithMany(p => p.Images)
+                .HasForeignKey(c => c.ProjectId)
+                .HasConstraintName("ForeignKey_ProjectImage_Project");
+
+
             // converter for base64 to byte[]
             ValueConverter<string, byte[]> imageConverter = new ValueConverter<string, byte[]>(
                                     v => Convert.FromBase64String(v),
@@ -71,6 +81,12 @@ namespace cavitt.net.Data
                 .Entity<ProjectCategory>()
                 .Property(e => e.Thumbnail)
                 .HasConversion(imageConverter);
+
+            builder
+                .Entity<ProjectImage>()
+                .Property(e => e.Base64Image)
+                .HasConversion(imageConverter);
+
 
             // enum to string.
             EnumToStringConverter<LogType> logTypeConverter = new EnumToStringConverter<LogType>();

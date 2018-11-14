@@ -35,7 +35,7 @@ export class UserService {
 
   getRoles() {
    
-    return this._http.get('/api/Role/Roles')
+    return this._http.get('/api/Roles/Roles')
       .catch(this.handleError);
   }
 

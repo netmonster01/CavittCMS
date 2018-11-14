@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, Inject } from '@angular/core';
+import { DOCUMENT } from '@angular/common';
+import { Project } from '../../models';
 
 @Component({
   selector: 'app-project',
@@ -7,9 +9,22 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProjectComponent implements OnInit {
 
-  constructor() { }
+  currentProject: Project;
+
+  @Input() set project(project: Project) {
+
+    if (project) {
+      this.currentProject = project;
+    }
+  }
+  constructor(@Inject(DOCUMENT) private document: any) { }
 
   ngOnInit() {
+  }
+
+  openGitHubUrl() {
+
+    this.document.location.href = this.currentProject.gitHubUrl;
   }
 
 }

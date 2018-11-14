@@ -1,34 +1,15 @@
 
-
-<div class="row">
-  <div class="col-sm-4">
-    <div class="card text-white bg-danger" *ngIf="raspberryPi" style="width: 18rem;">
-      <img class="card-img-top" [src]="raspberryPi.fullThumbnailImageSrc" alt="Card image cap">
-      <div class="card-body">
-        <h5 class="card-title">{{raspberryPi.title}}</h5>
-        <p class="card-text">{{raspberryPi.content}}</p>
-        <a href="#" class="btn btn-primary">Go somewhere</a>
-      </div>
-    </div>
-  </div>
-  <div class="col-sm-4">
-    <div class="card text-white bg-info" *ngIf="angular" style="width: 18rem;">
-      <img class="card-img-top" [src]="angular.fullThumbnailImageSrc" alt="Card image cap">
-      <div class="card-body">
-        <h5 class="card-title">{{angular.title}}</h5>
-        <p class="card-text">{{angular.content}}</p>
-        <a href="#" class="btn btn-primary">Go somewhere</a>
-      </div>
-    </div>
-  </div>
-  <div class="col-sm-4">
-    <div class="card text-white bg-success" *ngIf="angular" style="width: 18rem;">
-      <img class="card-img-top" [src]="angular.fullThumbnailImageSrc" alt="Card image cap">
-      <div class="card-body">
-        <h5 class="card-title">{{angular.title}}</h5>
-        <p class="card-text">{{angular.content}}</p>
-        <a href="#" class="btn btn-primary">Go somewhere</a>
-      </div>
-    </div>
-  </div>
+<div *ngIf="projects">
+  <!--<div class="row" *ngFor="let project of projects">
+    <div class="col-sm-12"><app-project [project]="project"></app-project></div>
+  </div>-->
+  <mat-grid-list cols="2" rowHeight="1.1:1">
+    <mat-grid-tile *ngFor="let project of projects">
+      <app-project [project]="project"></app-project>
+    </mat-grid-tile>
+    <!--<mat-grid-tile>2</mat-grid-tile>
+    <mat-grid-tile>3</mat-grid-tile>
+    <mat-grid-tile>4</mat-grid-tile>-->
+  </mat-grid-list>
 </div>
+

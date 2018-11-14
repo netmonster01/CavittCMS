@@ -22,7 +22,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatChipsModule } from '@angular/material/chips';
 import {
  MatPaginatorModule,
-  MatSortModule, MatTableModule, MatProgressSpinnerModule
+  MatSortModule, MatTableModule, MatProgressSpinnerModule, MatGridListModule
 } from "@angular/material";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BlogsComponent, PostsComponent, PostComponent } from './blogs';
@@ -98,6 +98,7 @@ import { LogsComponent } from './admin/logs/logs.component';
     MatTableModule,
     MatPaginatorModule,
     MatSortModule,
+    MatGridListModule,
     HighlightModule.forRoot({ theme: 'agate' })
   ],
   providers: [AuthService, UserService, StatsService, BlogService, AuthGuard, RoleGuard, LoggerService, DashboardService, VoteService], //{ provide: ErrorHandler, useClass: ApplicationErrorHandler }

@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace cavitt.net.Migrations
 {
-    public partial class initial : Migration
+    public partial class InitialCreate : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -69,16 +69,18 @@ namespace cavitt.net.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "ProjectCategory",
+                name: "ProjectCategories",
                 columns: table => new
                 {
                     CategoryId = table.Column<int>(nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
-                    CategoryName = table.Column<string>(nullable: true)
+                    CategoryName = table.Column<string>(nullable: true),
+                    Thumbnail = table.Column<byte[]>(nullable: true),
+                    CategoryDescription = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_ProjectCategory", x => x.CategoryId);
+                    table.PrimaryKey("PK_ProjectCategories", x => x.CategoryId);
                 });
 
             migrationBuilder.CreateTable(
@@ -248,7 +250,7 @@ namespace cavitt.net.Migrations
                     table.ForeignKey(
                         name: "ForeignKey_Project_ProjectCategory",
                         column: x => x.CategoryId,
-                        principalTable: "ProjectCategory",
+                        principalTable: "ProjectCategories",
                         principalColumn: "CategoryId",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -311,6 +313,26 @@ namespace cavitt.net.Migrations
                         onDelete: ReferentialAction.Restrict);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "ProjectImages",
+                columns: table => new
+                {
+                    ImageId = table.Column<int>(nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    ProjectId = table.Column<int>(nullable: false),
+                    Base64Image = table.Column<byte[]>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ProjectImages", x => x.ImageId);
+                    table.ForeignKey(
+                        name: "ForeignKey_ProjectImage_Project",
+                        column: x => x.ProjectId,
+                        principalTable: "Projects",
+                        principalColumn: "ProjectId",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
                 table: "AspNetRoleClaims",
@@ -364,6 +386,11 @@ namespace cavitt.net.Migrations
                 column: "AuthorId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_ProjectImages_ProjectId",
+                table: "ProjectImages",
+                column: "ProjectId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Projects_CategoryId",
                 table: "Projects",
                 column: "CategoryId");
@@ -403,7 +430,7 @@ namespace cavitt.net.Migrations
                 name: "Logs");
 
             migrationBuilder.DropTable(
-                name: "Projects");
+                name: "ProjectImages");
 
             migrationBuilder.DropTable(
                 name: "Settings");
@@ -415,10 +442,13 @@ namespace cavitt.net.Migrations
                 name: "AspNetRoles");
 
             migrationBuilder.DropTable(
-                name: "ProjectCategory");
+                name: "Projects");
 
             migrationBuilder.DropTable(
                 name: "Posts");
+
+            migrationBuilder.DropTable(
+                name: "ProjectCategories");
 
             migrationBuilder.DropTable(
                 name: "AspNetUsers");

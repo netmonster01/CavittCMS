@@ -1,6 +1,8 @@
 ﻿using cavitt.net.Data;
+using cavitt.net.Dtos;
 using cavitt.net.Interfaces;
 using cavitt.net.Models;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,19 +15,22 @@ namespace cavitt.net.Repositories
 
         private readonly ILoggerRepository _loggerRepository;
         private readonly ApplicationDbContext _applicationDbContext;
+        private readonly IConverter<Project, ProjectDto> _converter;
+        private readonly IConverter<ProjectCategory, ProjectCategoryDto> _catConverter;
 
-        public ProjectRepository(ApplicationDbContext applicationDbContext, ILoggerRepository loggerRepository)
+        public ProjectRepository(ApplicationDbContext applicationDbContext, ILoggerRepository loggerRepository, IConverter<Project, ProjectDto> converter, IConverter<ProjectCategory, ProjectCategoryDto> catConverter)
         {
             _applicationDbContext = applicationDbContext;
             _loggerRepository = loggerRepository;
+            _converter = converter;
+            _catConverter = catConverter;
         }
 
-        public async Task<bool> AddProjectAsync(Project project)
+        public async Task<bool> AddProjectAsync(ProjectDto project)
         {
-
             try
             {
-                _applicationDbContext.Projects.Add(project);
+                _applicationDbContext.Projects.Add(_converter.Convert(project));
                 await _applicationDbContext.SaveChangesAsync();
                 return true;
             }
@@ -34,27 +39,57 @@ namespace cavitt.net.Repositories
                 _loggerRepository.Write(ex);
                 return false;
             }
-
         }
 
-        public Project GetProject(int projectID)
+        public Task<bool> CreateProjectCategories(ProjectCategoryDto projectCategory)
         {
-            return _applicationDbContext.Projects.Where(p => p.ProjectId == projectID).FirstOrDefault();
+            throw new NotImplementedException();
         }
 
-        public Project GetProject(string projectName)
+        public ProjectDto GetProject(int projectID)
         {
-           return _applicationDbContext.Projects.Where(p => p.Title == projectName).FirstOrDefault();
-        }
-
-        public List<Project> GetProjects()
-        {
-
             try
             {
-                List<Project> projects = new List<Project>();
-                projects = _applicationDbContext.Projects.ToList();
-                return projects;
+                return _converter.Convert(_applicationDbContext.Projects.Where(p => p.ProjectId == projectID).Include(i => i.Images).FirstOrDefault());
+            }
+            catch (Exception ex)
+            {
+                _loggerRepository.Write(ex);
+                return null;
+            }
+        }
+
+        public ProjectDto GetProject(string projectName)
+        {
+            try
+            {
+                return _converter.Convert(_applicationDbContext.Projects.Where(p => p.Title == projectName).Include(i => i.Images).FirstOrDefault());
+            }
+            catch (Exception ex)
+            {
+                _loggerRepository.Write(ex);
+                return null;
+            }
+        }
+
+        public List<ProjectCategoryDto> GetProjectCategories()
+        {
+            try
+            {
+                return _applicationDbContext.ProjectCategories.Select(pc => _catConverter.Convert(pc)).ToList();
+            }
+            catch (Exception ex)
+            {
+                _loggerRepository.Write(ex);
+                return null;
+            }
+        }
+
+        public List<ProjectDto> GetProjects()
+        {
+            try
+            {
+                return _applicationDbContext.Projects.Include(i => i.Images).Select(p => _converter.Convert(p)).ToList();
             }
             catch (Exception ex)
             {
@@ -62,17 +97,16 @@ namespace cavitt.net.Repositories
                 _loggerRepository.Write(ex);
                 return null;
             }
-
-        }
-
-        public Task<bool> UdateProjectAsync(Project project)
-        {
-            throw new NotImplementedException();
         }
 
         public bool ProjectExists(int projectId)
         {
             return _applicationDbContext.Projects.Any(p => p.ProjectId == projectId);
+        }
+
+        public Task<bool> UdateProjectAsync(ProjectDto project)
+        {
+            throw new NotImplementedException();
         }
     }
 }

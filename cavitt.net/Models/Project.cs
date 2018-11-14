@@ -21,5 +21,7 @@ namespace cavitt.net.Models
 
         public int CategoryId { get; set; }
         public ProjectCategory ProjectCategory { get; set; }
+
+        public List<ProjectImage> Images { get; set; }
     }
 }

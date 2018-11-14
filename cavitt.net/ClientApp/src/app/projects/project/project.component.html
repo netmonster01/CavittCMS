@@ -1,3 +1,33 @@
-<p>
-  project works!
-</p>
+<div class="card text-white" [class.bg-success]="currentProject.categoryId == 1" [class.bg-warning]="currentProject.categoryId == 2" >
+  <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+    <ol class="carousel-indicators">
+      <li data-target="#carouselExampleIndicators" *ngFor="let image of currentProject.images; let i = index" [ngClass]="{'active' : i == 0}" data-slide-to="i"></li>
+    </ol>
+    <div class="carousel-inner">
+      <div class="carousel-item" *ngFor="let image of currentProject.images; let i = index" [ngClass]="{'active' : i == 0}">
+        <img class="d-block w-100" [src]="image">
+      </div>
+    </div>
+    <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="sr-only">Previous</span>
+    </a>
+    <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="sr-only">Next</span>
+    </a>
+  </div>
+  <div class="card-body">
+    <h5 class="card-title">{{currentProject.title}}</h5>
+    <p class="card-text" [innerHTML]="currentProject.content | safe:'html'"></p>
+  </div>
+  <!--<ul class="list-group list-group-flush">
+    <li class="list-group-item">Cras justo odio</li>
+    <li class="list-group-item">Dapibus ac facilisis in</li>
+    <li class="list-group-item">Vestibulum at eros</li>
+  </ul>-->
+  <div class="card-body">
+    <button *ngIf="currentProject.gitHubUrl" class="btn bg-light" (click)="openGitHubUrl()">GitHub Code <i class="fa fa-external-link"></i></button>
+    <!--<a href="#" class="card-link">Another link</a>-->
+  </div>
+</div>

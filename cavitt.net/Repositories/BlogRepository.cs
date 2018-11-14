@@ -150,7 +150,9 @@ namespace cavitt.net.Repositories
             List<PostDto> posts = new List<PostDto>();
             try
             {
-                posts =  _applicationDbContext.Posts.Include(c => c.Comments).Include(u => u.Author).Select(p => _converter.Convert(p)).OrderBy(o => o.DateCreated).ToList();
+                var pl = _applicationDbContext.Posts.Include(c => c.Comments).Include(u => u.Author).OrderBy(o => o.DateCreated).ToList();
+
+                posts = pl.Select(p => _converter.Convert(p)).ToList() ;
 
                 //posts = _applicationDbContext.Posts.Select(
                 //    p=> _converter.Convert(p)

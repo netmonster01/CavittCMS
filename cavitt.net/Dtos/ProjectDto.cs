@@ -18,5 +18,6 @@ namespace cavitt.net.Dtos
         public string Keywords { get; set; }
         public bool Active { get; set; }
         public int CategoryId { get; set; }
+        public List<string> Images { get; set; }
     }
 }

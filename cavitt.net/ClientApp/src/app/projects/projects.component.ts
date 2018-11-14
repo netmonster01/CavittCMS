@@ -13,6 +13,7 @@ export class ProjectsComponent implements OnInit {
   projects: Project[] = [];
   raspberryPi: Project;
   angular: Project;
+
   ngOnInit() {
     this.getProjects();
   }
@@ -24,11 +25,6 @@ export class ProjectsComponent implements OnInit {
   processData(projects: Project[]) {
     if (projects) {
       this.projects = projects;
-      this.raspberryPi = this.projects[0];
-      this.raspberryPi.fullThumbnailImageSrc = this.raspberryPi.thumbnailImageType + this.raspberryPi.thumbnailImage;
-
-      this.angular = this.projects[1];
-      this.angular.fullThumbnailImageSrc = this.angular.thumbnailImageType + this.angular.thumbnailImage;
     }
   }
 }

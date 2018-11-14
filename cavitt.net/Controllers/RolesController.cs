@@ -10,11 +10,11 @@ namespace cavitt.net.Controllers
     [Route("api/[controller]")]
     [ApiController]
     //[Authorize(Roles = Constants.Roles.Admin)]
-    public class RoleController : Controller
+    public class RolesController : Controller
     {
         private IRolesRepository _rolesRepository;
 
-        public RoleController(IRolesRepository rolesRepository)
+        public RolesController(IRolesRepository rolesRepository)
         {
             _rolesRepository = rolesRepository;
         }

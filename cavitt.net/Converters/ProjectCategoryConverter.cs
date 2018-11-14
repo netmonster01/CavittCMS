@@ -12,23 +12,60 @@ namespace cavitt.net.Converters
     {
         private readonly ILoggerRepository _loggerRepository;
         private readonly UserManager<ApplicationUser> _userManager;
-        private readonly IConverter<ProjectCategory, ProjectCategoryDto> _converter;
 
-        public ProjectCategoryConverter(ILoggerRepository loggerRepository, UserManager<ApplicationUser> userManager, IConverter<ProjectCategory, ProjectCategoryDto> converter)
+        public ProjectCategoryConverter(ILoggerRepository loggerRepository, UserManager<ApplicationUser> userManager)
         {
             _loggerRepository = loggerRepository;
             _userManager = userManager;
-            _converter = converter;
         }
 
         public ProjectCategoryDto Convert(ProjectCategory source_object)
         {
-            throw new NotImplementedException();
+            if (source_object == null)
+            { return null; }
+
+            try
+            {
+
+                ProjectCategoryDto project = new ProjectCategoryDto
+                {
+                    CategoryDescription = source_object.CategoryDescription,
+                    CategoryId = source_object.CategoryId,
+                    CategoryName = source_object.CategoryName,
+                    Thumbnail = string.Format("data:image/jpg;base64,{0}", source_object.Thumbnail),
+                };
+
+                return project;
+            }
+            catch (Exception ex)
+            {
+                _loggerRepository.Write(ex);
+                return null;
+            }
         }
 
         public ProjectCategory Convert(ProjectCategoryDto source_object)
         {
-            throw new NotImplementedException();
+            if (source_object == null)
+            { return null; }
+
+            try
+            {
+                ProjectCategory project = new ProjectCategory
+                {
+                    CategoryDescription = source_object.CategoryDescription,
+                    CategoryId = source_object.CategoryId,
+                    CategoryName = source_object.CategoryName,
+                    Thumbnail = source_object.Thumbnail,
+                };
+
+                return project;
+            }
+            catch (Exception ex)
+            {
+                _loggerRepository.Write(ex);
+                return null;
+            }
         }
     }
 }

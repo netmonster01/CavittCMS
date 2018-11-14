@@ -1,4 +1,5 @@
-﻿using cavitt.net.Models;
+﻿using cavitt.net.Dtos;
+using cavitt.net.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,13 +9,16 @@ namespace cavitt.net.Interfaces
 {
     public interface IProjectRepository
     {
-        List<Project> GetProjects();
-        Project GetProject(int projectID);
-        Project GetProject(string projectName);
-        Task<bool> AddProjectAsync(Project project);
+        List<ProjectDto> GetProjects();
+        ProjectDto GetProject(int projectID);
+        ProjectDto GetProject(string projectName);
+        Task<bool> AddProjectAsync(ProjectDto project);
 
-        Task<bool> UdateProjectAsync(Project project);
+        Task<bool> UdateProjectAsync(ProjectDto project);
 
         bool ProjectExists(int projectId);
+
+        List<ProjectCategoryDto> GetProjectCategories();
+        Task<bool> CreateProjectCategories(ProjectCategoryDto projectCategory);
     }
 }
