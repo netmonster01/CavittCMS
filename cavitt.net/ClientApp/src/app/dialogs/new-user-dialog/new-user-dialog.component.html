@@ -23,8 +23,8 @@
       <div class="form-group">
         <mat-form-field>
           <mat-select class="form-control" formControlName="rolesList" id="profile" (change)="onSelect($event.target.value)" placeholder="Role">
-            <mat-option *ngFor="let role of roles" [value]="role.name">
-              {{role.name}}
+            <mat-option *ngFor="let role of roles" [value]="role.roleName">
+              {{role.roleName}}
             </mat-option>
            </mat-select>
         </mat-form-field>

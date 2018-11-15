@@ -1,0 +1,39 @@
+<h2 mat-dialog-title>Add New User</h2>
+<mat-dialog-content [formGroup]="form">
+  <div class="row">
+    <div class="col-sm-12">
+      <!-- title -->
+      <div class="form-group">
+        <mat-form-field>
+          <input matInput type="text" formControlName="title" class="form-control" id="projectTitle" placeholder="Title">
+        </mat-form-field>
+      </div>
+      <!-- content -->
+      <div class="form-group">
+        <mat-form-field>
+          <input matInput type="text" formControlName="content" class="form-control" id="content" placeholder="Content">
+        </mat-form-field>
+      </div>
+      <!-- gitHubUrl -->
+      <div class="form-group">
+        <mat-form-field>
+          <input matInput type="text" formControlName="gitHubUrl" class="form-control" id="profileEmail" placeholder="Git Hub Url">
+        </mat-form-field>
+      </div>
+      <div class="form-group">
+        <mat-form-field>
+          <mat-select class="form-control" formControlName="catogory" id="category" (change)="onSelect($event.target.value)" placeholder="Category">
+            <mat-option *ngFor="let category of categories" [value]="category.categoryId">
+              {{category.categoryName}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+    </div>
+  </div>
+</mat-dialog-content>
+
+<mat-dialog-actions>
+  <button mat-button (click)="close()">Cancel</button>
+  <button class="mat-raised-button mat-primary" (click)="save()">Save</button>
+</mat-dialog-actions>

@@ -28,7 +28,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BlogsComponent, PostsComponent, PostComponent } from './blogs';
 import { AuthService, BlogService, StatsService, UserService, LoggerService, DashboardService, VoteService } from './services';
 import { SafePipe, FilterPipe } from './pipes';
-import { BlogComponent, ImagesComponent, AdminComponent, RolesComponent, UsersComponent } from './admin';
+import { BlogComponent, ImagesComponent, AdminComponent, RolesComponent, UsersComponent, AdminProjectsComponent} from './admin';
 import { AuthGuard, RoleGuard } from "./guards";
 import { ForbiddenComponent } from './forbidden/forbidden.component';
 import { NewUserDialogComponent, NewBlogDialogComponent, NewRoleDialogComponent, ErrorDialogComponent, EditPostDialogComponent, NewCommentDailogComponent } from './dialogs';
@@ -42,6 +42,8 @@ import { CommonComponent } from './dialogs/common/common.component';
 import { ProjectsComponent } from './projects/projects.component';
 import { ProjectComponent } from './projects/project/project.component';
 import { LogsComponent } from './admin/logs/logs.component';
+import { CategoriesComponent } from './projects/categories/categories.component';
+import { NewProjectDialogComponent } from './dialogs/new-project-dialog/new-project-dialog.component';
 
 @NgModule({
   declarations: [
@@ -80,6 +82,9 @@ import { LogsComponent } from './admin/logs/logs.component';
     ProjectComponent,
     LogsComponent,
     FilterPipe,
+    CategoriesComponent,
+    NewProjectDialogComponent,
+    AdminProjectsComponent
   ],
   imports: [
     BrowserModule,
@@ -103,6 +108,6 @@ import { LogsComponent } from './admin/logs/logs.component';
   ],
   providers: [AuthService, UserService, StatsService, BlogService, AuthGuard, RoleGuard, LoggerService, DashboardService, VoteService], //{ provide: ErrorHandler, useClass: ApplicationErrorHandler }
   bootstrap: [AppComponent],
-  entryComponents: [NewUserDialogComponent, NewRoleDialogComponent, NewBlogDialogComponent, ErrorDialogComponent, EditPostDialogComponent, NewCommentDailogComponent]
+  entryComponents: [NewUserDialogComponent, NewRoleDialogComponent, NewBlogDialogComponent, ErrorDialogComponent, EditPostDialogComponent, NewCommentDailogComponent, NewProjectDialogComponent]
 })
 export class AppModule { }

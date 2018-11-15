@@ -1,4 +1,4 @@
-<div class="card text-white" [class.bg-success]="currentProject.categoryId == 1" [class.bg-warning]="currentProject.categoryId == 2" >
+<div class="card text-white" [class.bg-success]="currentProject.categoryId == 1" [class.bg-primary]="currentProject.categoryId == 2" >
   <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
     <ol class="carousel-indicators">
       <li data-target="#carouselExampleIndicators" *ngFor="let image of currentProject.images; let i = index" [ngClass]="{'active' : i == 0}" data-slide-to="i"></li>

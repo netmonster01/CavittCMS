@@ -25,11 +25,22 @@ namespace cavitt.net.Controllers
             return _projectRepository.GetProjects();
         }
 
+
+
+
         // GET: api/Project/5
         [HttpGet("{id}", Name = "Get")]
         public ProjectDto Get(int id)
         {
             return _projectRepository.GetProject(id);
+        }
+
+        // GET: api/Project/5
+        [HttpGet]
+        [Route("Category/{categoryId}")]
+        public IEnumerable<ProjectDto> GetProjectByCategoryId(int categoryId)
+        {
+            return _projectRepository.GetProjectsByCategoryId(categoryId);
         }
 
         // POST: api/Project
@@ -56,7 +67,7 @@ namespace cavitt.net.Controllers
 
 
         [HttpGet]
-        [Route("ProjectCategories")]
+        [Route("Categories")]
         public IEnumerable<ProjectCategoryDto> GetCategories()
         {
             return _projectRepository.GetProjectCategories();

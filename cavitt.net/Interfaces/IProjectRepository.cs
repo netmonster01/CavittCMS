@@ -1,8 +1,5 @@
 ﻿using cavitt.net.Dtos;
-using cavitt.net.Models;
-using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace cavitt.net.Interfaces
@@ -20,5 +17,7 @@ namespace cavitt.net.Interfaces
 
         List<ProjectCategoryDto> GetProjectCategories();
         Task<bool> CreateProjectCategories(ProjectCategoryDto projectCategory);
+
+        List<ProjectDto> GetProjectsByCategoryId(int categoryId);
     }
 }

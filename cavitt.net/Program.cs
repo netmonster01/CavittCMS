@@ -19,7 +19,7 @@ namespace cavitt.net
                 var context = services.GetRequiredService<ApplicationDbContext>();
                 try
                 {
-                    //SeedData.InitializeAsync(services);
+                    SeedData.InitializeAsync(services);
                 }
                 catch (Exception ex)
                 {

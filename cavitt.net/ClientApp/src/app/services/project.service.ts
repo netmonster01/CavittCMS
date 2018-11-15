@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import {  Project } from '../models';
+import { Project, ProjectCategory } from '../models';
 import { Observable } from 'rxjs/Observable';
 import { LoggerService } from './logger.service';
 
@@ -18,7 +18,25 @@ export class ProjectService {
       .catch(this.handleError);
   }
 
-  createPost(project: Project) {
+  getProject(id: number) {
+
+    return this._http.get<Project[]>('/api/Projects/' + id)
+      .catch(this.handleError);
+  }
+
+  getProjectsByCategoryId(id: number) {
+
+    return this._http.get<Project[]>('/api/Projects/Category/' + id)
+      .catch(this.handleError);
+  }
+
+  getProjectCategories() {
+
+    return this._http.get<ProjectCategory[]>('/api/Projects/Categories')
+      .catch(this.handleError);
+  }
+
+  createProject(project: Project) {
 
     let options = {
       headers: this.headers

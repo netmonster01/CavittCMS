@@ -99,6 +99,20 @@ namespace cavitt.net.Repositories
             }
         }
 
+        public List<ProjectDto> GetProjectsByCategoryId(int categoryId)
+        {
+            try
+            {
+                return _applicationDbContext.Projects.Where(p => p.CategoryId == categoryId).Include(i => i.Images).Select(p => _converter.Convert(p)).ToList();
+            }
+            catch (Exception ex)
+            {
+
+                _loggerRepository.Write(ex);
+                return null;
+            }
+        }
+
         public bool ProjectExists(int projectId)
         {
             return _applicationDbContext.Projects.Any(p => p.ProjectId == projectId);

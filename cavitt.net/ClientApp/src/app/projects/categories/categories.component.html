@@ -1,0 +1,18 @@
+<mat-grid-list cols="2" rowHeight="1.1:1">
+  <mat-grid-tile *ngFor="let projectCategory of projectCategories;" >
+    <div class="card w-75 text-white" [class.bg-success]="projectCategory.categoryId == 1" [class.bg-primary]="projectCategory.categoryId == 2">
+      <div class="card-header">
+        {{projectCategory.categoryName}}
+      </div>
+      <img class="card-img-top" [src]="projectCategory.thumbnail">
+      <div class="card-body">
+        <!--<h5 class="card-title">Special title treatment</h5>-->
+        <p class="card-text">{{projectCategory.categoryDescription}}</p>
+        <button class="btn btn-light" (click)="viewProjects(projectCategory.categoryId)">View &nbsp;<i class="fa fa-eye" aria-hidden="true"></i></button>
+      </div>
+    </div>
+    <!--<div>
+      {{projectCategory.categoryId}}
+    </div>-->
+  </mat-grid-tile>
+</mat-grid-list>

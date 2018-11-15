@@ -4,3 +4,4 @@ export * from './new-role-dialog/new-role-dialog.component';
 export * from './error-dialog/error-dialog.component';
 export * from './edit-post-dialog/edit-post-dialog.component';
 export * from './new-comment-dailog/new-comment-dailog.component';
+export * from './new-project-dialog/new-project-dialog.component';
