@@ -101,5 +101,22 @@ namespace cavitt.net.Controllers
                 }
             }
         }
+
+        [HttpPost]
+        [Route("Project/Thumbnail")]
+        public void PostProjectThumbnailFile([FromForm]int projectId, [FromForm] IFormFile file)
+        {
+            if (file.Length > 0)
+            {
+                using (var ms = new MemoryStream())
+                {
+                    file.CopyTo(ms);
+                    var fileBytes = ms.ToArray();
+                    var e = Convert.ToString(fileBytes);
+                    string s = Convert.ToBase64String(fileBytes);
+                    // act on the Base64 data
+                }
+            }
+        }
     }
 }
