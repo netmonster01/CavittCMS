@@ -6,3 +6,4 @@ export * from './blog/blog.component';
 export * from './blog/images/images.component';
 export * from './logs/logs.component';
 export * from './projects/projects.component';
+export * from './projects/categories/categories.component';

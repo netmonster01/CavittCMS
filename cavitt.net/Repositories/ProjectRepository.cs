@@ -41,9 +41,19 @@ namespace cavitt.net.Repositories
             }
         }
 
-        public Task<bool> CreateProjectCategories(ProjectCategoryDto projectCategory)
+        public async Task<bool> AddProjectCategoriesAsync(ProjectCategoryDto projectCategory)
         {
-            throw new NotImplementedException();
+            try
+            {
+                _applicationDbContext.ProjectCategories.Add(_catConverter.Convert(projectCategory));
+                await _applicationDbContext.SaveChangesAsync();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                _loggerRepository.Write(ex);
+                return false;
+            }
         }
 
         public ProjectDto GetProject(int projectID)

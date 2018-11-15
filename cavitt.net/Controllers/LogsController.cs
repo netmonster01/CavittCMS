@@ -121,8 +121,9 @@ namespace cavitt.net.Controllers
             return Ok(log);
         }
 
+        [HttpGet]
         [Route("ErrorLogCount")]
-        public async Task<IActionResult> GetErrorLogCount()
+        public IActionResult GetErrorLogCount()
         {
             if (!ModelState.IsValid)
             {

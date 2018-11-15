@@ -1,0 +1,40 @@
+<h2 mat-dialog-title>Add New Project Category</h2>
+<mat-dialog-content [formGroup]="form">
+  <div class="row">
+    <div class="col-sm-12">
+      <!-- thumbnail -->
+      <div class="form-group">
+        Thumbnail
+        <br />
+        <label for="uploadThumbnail" class="upload-file">
+
+          <img width="128" height="128" [src]="imageSrc" />
+          <!--<mat-icon>add_a_photo</mat-icon>-->
+        </label>
+
+        <input type="file"
+               id="uploadThumbnail"
+               class="hidden-input"
+               accept="image/jpeg, .jpeg, image/png, .png, image/pjpeg, .jpg"
+               (change)="onFileSelected($event)" #fileInput>
+      </div>
+      <!-- project Category  -->
+      <div class="form-group">
+        <mat-form-field>
+          <input matInput type="text" formControlName="categoryName" class="form-control" id="addNewCategory" placeholder="Category Name">
+        </mat-form-field>
+      </div>
+      <div class="form-group">
+        <mat-form-field>
+          <textarea matInput formControlName="categoryDescription" class="form-control" id="addNewCategory" placeholder="Category Description"></textarea>
+        </mat-form-field>
+      </div>
+
+    </div>
+  </div>
+</mat-dialog-content>
+
+<mat-dialog-actions>
+  <button mat-button (click)="close()">Cancel</button>
+  <button class="mat-raised-button mat-primary" (click)="save()">Save</button>
+</mat-dialog-actions>

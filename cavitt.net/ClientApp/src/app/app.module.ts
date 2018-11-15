@@ -28,10 +28,27 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BlogsComponent, PostsComponent, PostComponent } from './blogs';
 import { AuthService, BlogService, StatsService, UserService, LoggerService, DashboardService, VoteService } from './services';
 import { SafePipe, FilterPipe } from './pipes';
-import { BlogComponent, ImagesComponent, AdminComponent, RolesComponent, UsersComponent, AdminProjectsComponent} from './admin';
+import {
+  BlogComponent,
+  ImagesComponent,
+  AdminComponent,
+  RolesComponent,
+  UsersComponent,
+  AdminProjectsComponent,
+  AdminCategoriesComponent
+} from './admin';
 import { AuthGuard, RoleGuard } from "./guards";
 import { ForbiddenComponent } from './forbidden/forbidden.component';
-import { NewUserDialogComponent, NewBlogDialogComponent, NewRoleDialogComponent, ErrorDialogComponent, EditPostDialogComponent, NewCommentDailogComponent } from './dialogs';
+import {
+  NewUserDialogComponent,
+  NewBlogDialogComponent,
+  NewRoleDialogComponent,
+  ErrorDialogComponent,
+  EditPostDialogComponent,
+  NewCommentDailogComponent,
+  NewProjectDialogComponent,
+  NewProjectCategoryDialogComponent
+} from './dialogs';
 import { MatDialogModule } from "@angular/material";
 import { ApplicationErrorHandler } from './custom-error-handler';
 import { HighlightModule, HighlightOptions } from 'ngx-highlightjs';
@@ -43,7 +60,7 @@ import { ProjectsComponent } from './projects/projects.component';
 import { ProjectComponent } from './projects/project/project.component';
 import { LogsComponent } from './admin/logs/logs.component';
 import { CategoriesComponent } from './projects/categories/categories.component';
-import { NewProjectDialogComponent } from './dialogs/new-project-dialog/new-project-dialog.component';
+
 
 @NgModule({
   declarations: [
@@ -84,7 +101,9 @@ import { NewProjectDialogComponent } from './dialogs/new-project-dialog/new-proj
     FilterPipe,
     CategoriesComponent,
     NewProjectDialogComponent,
-    AdminProjectsComponent
+    AdminProjectsComponent,
+    AdminCategoriesComponent,
+    NewProjectCategoryDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -108,6 +127,6 @@ import { NewProjectDialogComponent } from './dialogs/new-project-dialog/new-proj
   ],
   providers: [AuthService, UserService, StatsService, BlogService, AuthGuard, RoleGuard, LoggerService, DashboardService, VoteService], //{ provide: ErrorHandler, useClass: ApplicationErrorHandler }
   bootstrap: [AppComponent],
-  entryComponents: [NewUserDialogComponent, NewRoleDialogComponent, NewBlogDialogComponent, ErrorDialogComponent, EditPostDialogComponent, NewCommentDailogComponent, NewProjectDialogComponent]
+  entryComponents: [NewUserDialogComponent, NewRoleDialogComponent, NewBlogDialogComponent, ErrorDialogComponent, EditPostDialogComponent, NewCommentDailogComponent, NewProjectDialogComponent, NewProjectCategoryDialogComponent]
 })
 export class AppModule { }

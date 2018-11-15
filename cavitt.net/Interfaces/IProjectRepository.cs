@@ -16,7 +16,7 @@ namespace cavitt.net.Interfaces
         bool ProjectExists(int projectId);
 
         List<ProjectCategoryDto> GetProjectCategories();
-        Task<bool> CreateProjectCategories(ProjectCategoryDto projectCategory);
+        Task<bool> AddProjectCategoriesAsync(ProjectCategoryDto projectCategory);
 
         List<ProjectDto> GetProjectsByCategoryId(int categoryId);
     }

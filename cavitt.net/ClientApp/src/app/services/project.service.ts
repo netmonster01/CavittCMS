@@ -45,6 +45,15 @@ export class ProjectService {
     return this._http.post<Project>('/api/Projects', project, options).catch(this.handleError);
   }
 
+  createProjectCategory(projectCategory: ProjectCategory) {
+
+    let options = {
+      headers: this.headers
+    };
+
+    return this._http.post<Project>('/api/Projects/Category', projectCategory, options).catch(this.handleError);
+  }
+
   handleError(handleError: any): any {
     console.log(handleError);
   }

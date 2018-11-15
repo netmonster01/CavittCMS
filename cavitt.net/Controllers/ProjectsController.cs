@@ -50,6 +50,13 @@ namespace cavitt.net.Controllers
 
           return Ok(await  _projectRepository.AddProjectAsync(project));
         }
+        // POST: api/Project
+        [HttpPost]
+        [Route("Category")]
+        public async Task<IActionResult> PostCategoryAsync([FromBody] ProjectCategoryDto projectCategory)
+        {
+            return Ok(await _projectRepository.AddProjectCategoriesAsync(projectCategory));
+        }
 
         // PUT: api/Project/5
         [HttpPut("{id}")]
