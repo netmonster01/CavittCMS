@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using cavitt.net.Data;
 using cavitt.net.Models;
+using cavitt.net.Interfaces;
 
 namespace cavitt.net.Controllers
 {
@@ -15,10 +16,12 @@ namespace cavitt.net.Controllers
     public class LogsController : ControllerBase
     {
         private readonly ApplicationDbContext _context;
+        private readonly ILoggerRepository _loggerRepository;
 
-        public LogsController(ApplicationDbContext context)
+        public LogsController(ApplicationDbContext context, ILoggerRepository loggerRepository)
         {
             _context = context;
+            _loggerRepository = loggerRepository;
         }
 
         // GET: api/Logs
@@ -116,6 +119,19 @@ namespace cavitt.net.Controllers
             await _context.SaveChangesAsync();
 
             return Ok(log);
+        }
+
+        [Route("ErrorLogCount")]
+        public async Task<IActionResult> GetErrorLogCount()
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            int count = _loggerRepository.ErrorLogCount();
+
+            return Ok(count);
         }
 
         private bool LogExists(int id)

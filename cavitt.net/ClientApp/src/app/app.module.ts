@@ -21,7 +21,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatButtonModule } from '@angular/material/button';
 import { MatChipsModule } from '@angular/material/chips';
 import {
- MatPaginatorModule,
+  MatPaginatorModule,
   MatSortModule, MatTableModule, MatProgressSpinnerModule, MatGridListModule
 } from "@angular/material";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';

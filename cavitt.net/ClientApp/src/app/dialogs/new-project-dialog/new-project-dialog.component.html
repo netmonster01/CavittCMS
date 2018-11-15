@@ -1,4 +1,4 @@
-<h2 mat-dialog-title>Add New User</h2>
+<h2 mat-dialog-title>Add New Project</h2>
 <mat-dialog-content [formGroup]="form">
   <div class="row">
     <div class="col-sm-12">
@@ -20,6 +20,7 @@
           <input matInput type="text" formControlName="gitHubUrl" class="form-control" id="profileEmail" placeholder="Git Hub Url">
         </mat-form-field>
       </div>
+      <!-- category list-->
       <div class="form-group">
         <mat-form-field>
           <mat-select class="form-control" formControlName="catogory" id="category" (change)="onSelect($event.target.value)" placeholder="Category">
@@ -28,6 +29,16 @@
             </mat-option>
           </mat-select>
         </mat-form-field>
+      </div>
+      <div class="form-group">
+        <label for="uploadPicture" class="upload-file">
+          <!--<mat-icon>add_a_photo</mat-icon>-->
+        </label>
+        <input type="file"
+               id="uploadPicture"
+               class="hidden-input"
+               accept="image/jpeg, .jpeg, image/png, .png, image/pjpeg, .jpg"
+               (change)="selectFile($event.target.files[0])">
       </div>
     </div>
   </div>

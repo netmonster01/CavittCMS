@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { MatDialogRef } from '@angular/material';
+import { MatDialogRef, MatIcon } from '@angular/material';
 import { Project, ProjectCategory } from '../../models';
 import { ProjectService } from '../../services';
 

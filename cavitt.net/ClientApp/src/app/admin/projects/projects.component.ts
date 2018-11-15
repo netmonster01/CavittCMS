@@ -12,9 +12,21 @@ import { NewProjectDialogComponent } from '../../dialogs';
 export class AdminProjectsComponent implements OnInit {
 
   newProject: Project;
+  projects: Project[] = [];
   constructor(private projectService: ProjectService, private dialog: MatDialog) { }
 
   ngOnInit() {
+    this.getProjects();
+  }
+
+  getProjects(): any {
+    this.projectService.getProjects().subscribe((projects: Project[]) => this.processProjects(projects));
+  }
+
+  processProjects(projects: Project[]): void {
+    if (projects) {
+      this.projects = projects;
+    }
   }
 
   openDialog() {
@@ -30,7 +42,7 @@ export class AdminProjectsComponent implements OnInit {
       width: '500px'
     };
 
-    const dialogRef = this.dialog.open(NewProjectDialogComponent, { width: '300px', hasBackdrop: false });
+    const dialogRef = this.dialog.open(NewProjectDialogComponent, { width: '400px', hasBackdrop: false });
 
     dialogRef.afterClosed().subscribe(
       data => console.log('Dialog output:', data)
