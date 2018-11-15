@@ -25,9 +25,16 @@
           {{project.title}}
         </div>
         <div class="col-xs-4 col-sm-8">
-
+          <mat-grid-list cols="5" >
+            <mat-grid-tile>
+              <!--*ngFor="let project of projects"-->
+              <mat-grid-tile>2</mat-grid-tile>
+              <mat-grid-tile>3</mat-grid-tile>
+              <mat-grid-tile>4</mat-grid-tile>
+              <!--<app-project [project]="project"></app-project>-->
+            </mat-grid-tile>
+          </mat-grid-list>
         </div>
-
         <div class="col-xs-4 col-sm-2">
           <div class="pull-right">
             <button class="btn btn-outline-danger fa fa-trash"></button>&nbsp;
